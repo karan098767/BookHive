@@ -10,7 +10,7 @@ class BookSeeder extends Seeder
 {
     public function run(): void
     {
-        // Make sure at least one author exists
+
         if (Author::count() === 0) {
             Author::factory()->count(10)->create();
         }
