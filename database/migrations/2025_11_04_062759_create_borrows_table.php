@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreignId('member_id')->constrained('members')->onDelete('cascade');
             $table->date('issue_date');
             $table->date('due_date');
-            $table->date('date_returned');
-            $table->decimal('late_fee')->default(0);
+            $table->date('date_returned')->nullable();
+            $table->decimal('late_fee', 8, 2)->nullable();
             $table->timestamps();
         });
     }

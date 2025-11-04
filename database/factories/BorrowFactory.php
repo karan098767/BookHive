@@ -21,7 +21,7 @@ class BorrowFactory extends Factory
         $lateFee = null;
         if ($dateReturned && $dateReturned > $due) {
             $daysLate = (new Carbon($dateReturned))->diffInDays(new Carbon($due));
-            $lateFee = $daysLate * 1.50;
+            $lateFee = $daysLate * 100;
         }
 
         return [
