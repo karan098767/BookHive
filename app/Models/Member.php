@@ -15,6 +15,6 @@ class Member extends Authenticatable
 
     public function borrowings()
     {
-        return $this->hasMany(BorrowTracker::class);
+        return $this->hasMany(Borrow::class);
     }
 }
