@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('first_name', 150);
             $table->string('last_name', 150);
-            $table->string('password', 150);
+            $table->string('password');
             $table->string('phone_number', 150);
-            $table->string('email_address', 150);
-            $table->date('dob');
+            $table->string('email')->unique(); 
+            $table->date('dob')->nullable();
+            $table->unsignedInteger('total_books_borrowed')->default(0);
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

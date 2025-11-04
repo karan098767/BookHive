@@ -18,8 +18,9 @@ return new class extends Migration
             $table->foreignId('author_id')->constrained('authors')->onDelete('cascade');
             $table->string('genre', 150);
             $table->date('published_date');
+            $table->unsignedInteger('copies')->default(1);
             $table->enum('status', ['available', 'borrowed', 'reserved', 'n/a'])->default('available');
-            $table->text('pdf_link',);
+            $table->string('pdf_link')->nullable();
             $table->integer('total_borrow_count');
             $table->timestamps();
         });
