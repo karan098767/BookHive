@@ -10,7 +10,6 @@ class AdminSeeder extends Seeder
 {
     public function run(): void
     {
-        // Default admin
         Admin::factory()->create([
             'first_name' => 'System',
             'last_name'  => 'Admin',
