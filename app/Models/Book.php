@@ -15,6 +15,11 @@ class Book extends Model
 
     protected $dates = ['published_date'];
 
+    protected $attributes = [
+    'total_borrow_count' => 0,
+];
+
+
     public function author()
     {
         return $this->belongsTo(Author::class);
