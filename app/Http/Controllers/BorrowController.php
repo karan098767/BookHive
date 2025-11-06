@@ -46,21 +46,8 @@ class BorrowController extends Controller
             'late_fee' => null,
         ]);
 
-        // Decrement copies and update book status
-        $book = \App\Models\Book::find($data['book_id']);
-        if ($book->copies > 0) {
-            $book->decrement('copies');
-            $book->increment('total_borrow_count');
-            $book->status = $book->copies - 1 > 0 ? 'available' : 'borrowed';
-            $book->save();
-        }
-
-        // increment member borrowed counter
-        $member = \App\Models\Member::find($data['member_id']);
-        $member->increment('total_books_borrowed');
-
-        return redirect()->route('borrow.index')->with('success', 'Book issued successfully.');
-    }
+    return redirect()->route('borrow.index')->with('success', 'Book issued successfully.');
+}
 
 
     public function edit(Borrow $borrow)
@@ -93,7 +80,6 @@ class BorrowController extends Controller
                 $book->save();
             }
 }
-
 
         return redirect()->route('borrow.index')->with('success','Borrow record updated');
     }
