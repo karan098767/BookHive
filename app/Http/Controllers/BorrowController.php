@@ -59,7 +59,7 @@ class BorrowController extends Controller
     $member = \App\Models\Member::find($data['member_id']);
     $member->increment('total_books_borrowed');
 
-    return redirect()->route('borrows.index')->with('success', 'Book issued successfully.');
+    return redirect()->route('borrow.index')->with('success', 'Book issued successfully.');
 }
 
 
