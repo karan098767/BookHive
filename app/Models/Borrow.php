@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory; // ✅
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Borrow extends Model
 {
-    use HasFactory; // ✅
+    use HasFactory;
 
     protected $fillable = [
         'book_id','member_id','issue_date','due_date','date_returned','late_fee'
