@@ -25,17 +25,11 @@
     <tr class="border-t">
       <td class="p-2">{{ $r->book->title ?? 'N/A' }}</td>
       <td class="p-2">{{ $r->member->first_name ?? 'N/A' }}</td>
-      <td class="p-2">
-  {{ \Carbon\Carbon::parse($r->due_date)->format('Y-m-d') }}
-</td>
-<td class="p-2">
-  {{ $r->date_returned ? \Carbon\Carbon::parse($r->date_returned)->format('Y-m-d') : '-' }}
-</td>
-
-      <td class="p-2">{{ $r->date_returned ? $r->date_returned->format('Y-m-d') : '-' }}</td>
-      <td class="p-2">
-  {{ $r->late_fee ? number_format($r->late_fee, 0) . ' KES' : '-' }}
-</td>
+      <td class="p-2">{{ ($r->issue_date)->format('Y-m-d') }}</td>
+      <td class="p-2">{{ ($r->due_date)->format('Y-m-d') }}</td>
+      <td class="p-2">{{ $r->date_returned ? ($r->date_returned)->format('Y-m-d') : '-' }}</td>
+      {{-- <td class="p-2">{{ $r->late_fee ? number_format($r->late_fee, 0) . ' KES' : '-' }}</td> --}}
+      <td class="p-2">{{ $r->late_fee ? number_format($r->late_fee, 0) . ' KES' : '-' }}</td>
 
       <td class="p-2 flex space-x-2">
         <a href="{{ route('borrow.edit',$r) }}" class="text-yellow-600 text-sm">Update</a>
