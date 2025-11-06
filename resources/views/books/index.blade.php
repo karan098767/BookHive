@@ -7,7 +7,7 @@
   <h1 class="text-2xl font-bold">Books</h1>
   <div class="flex space-x-2">
     <form method="GET" action="{{ route('books.index') }}" class="flex">
-      <input name="q" value="{{ $q ?? '' }}" placeholder="Search title, genre, isbn" class="px-3 py-2 border rounded-l" />
+      <input name="search" value="{{ request('search') }}" placeholder="Search title, genre, isbn" class="px-3 py-2 border rounded-l" />
       <button class="px-3 py-2 bg-indigo-600 text-white rounded-r">Search</button>
     </form>
     <a href="{{ route('books.create') }}" class="px-3 py-2 bg-green-600 text-white rounded">Add Book</a>
