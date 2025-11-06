@@ -37,7 +37,7 @@ class BorrowFactory extends Factory
         if ($dateReturned) {
             $returnedCarbon = Carbon::instance($dateReturned);
             if ($returnedCarbon->greaterThan($due)) {
-                $daysLate = $returnedCarbon->diffInDays($due);
+                $daysLate = $due->diffInDays($returnedCarbon);
                 $lateFee = $daysLate * 100; 
             } else {
                 $lateFee = 0;

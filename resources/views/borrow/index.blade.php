@@ -28,6 +28,7 @@
       <td class="p-2">{{ ($r->issue_date)->format('Y-m-d') }}</td>
       <td class="p-2">{{ ($r->due_date)->format('Y-m-d') }}</td>
       <td class="p-2">{{ $r->date_returned ? ($r->date_returned)->format('Y-m-d') : '-' }}</td>
+      {{-- <td class="p-2">{{ $r->late_fee ? number_format($r->late_fee, 0) . ' KES' : '-' }}</td> --}}
       <td class="p-2">{{ $r->late_fee ? number_format($r->late_fee, 0) . ' KES' : '-' }}</td>
 
       <td class="p-2 flex space-x-2">
