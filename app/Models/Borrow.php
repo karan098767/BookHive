@@ -10,18 +10,27 @@ class Borrow extends Model
     use HasFactory;
 
     protected $fillable = [
-        'book_id','member_id','issue_date','due_date','date_returned','late_fee'
+        'book_id',
+        'member_id',
+        'issue_date',
+        'due_date',
+        'date_returned',
+        'late_fee',
     ];
 
-    protected $dates = ['issue_date','due_date','date_returned'];
+    protected $casts = [
+        'issue_date' => 'date',
+        'due_date' => 'date',
+        'date_returned' => 'date',
+    ];
 
     public function book()
     {
-        return $this->belongsTo(Book::class);
+        return $this->belongsTo(\App\Models\Book::class);
     }
 
     public function member()
     {
-        return $this->belongsTo(Member::class);
+        return $this->belongsTo(\App\Models\Member::class);
     }
 }

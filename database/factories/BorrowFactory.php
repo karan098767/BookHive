@@ -15,21 +15,41 @@ class BorrowFactory extends Factory
     public function definition()
     {
         $issue = $this->faker->dateTimeBetween('-60 days', 'now');
-        $due = (clone $issue)->modify('+14 days');
-        $dateReturned = $this->faker->boolean(70) ? $this->faker->dateTimeBetween($issue, $due) : null;
+        $issueCarbon = Carbon::instance($issue);
+        $due = (clone $issueCarbon)->addDays(14);
+
+        // Decide if returned at all
+        $wasReturned = $this->faker->boolean(80); // 80% returned
+
+        $dateReturned = null;
+        if ($wasReturned) {
+            // 60% returned on/before due, 40% returned after due (some late)
+            if ($this->faker->boolean(60)) {
+                // returned on or before due
+                $dateReturned = $this->faker->dateTimeBetween($issueCarbon, $due);
+            } else {
+                // returned after due (late) — within 1..10 days late
+                $dateReturned = $this->faker->dateTimeBetween($due->addDay(), (clone $due)->addDays(10));
+            }
+        }
 
         $lateFee = null;
-        if ($dateReturned && $dateReturned > $due) {
-            $daysLate = (new Carbon($dateReturned))->diffInDays(new Carbon($due));
-            $lateFee = $daysLate * 100;
+        if ($dateReturned) {
+            $returnedCarbon = Carbon::instance($dateReturned);
+            if ($returnedCarbon->greaterThan($due)) {
+                $daysLate = $returnedCarbon->diffInDays($due);
+                $lateFee = $daysLate * 100; 
+            } else {
+                $lateFee = 0;
+            }
         }
 
         return [
             'book_id' => Book::inRandomOrder()->first()->id ?? Book::factory()->create()->id,
             'member_id' => Member::inRandomOrder()->first()->id ?? Member::factory()->create()->id,
-            'issue_date' => $issue,
-            'due_date' => $due,
-            'date_returned' => $dateReturned,
+            'issue_date' => $issueCarbon->toDateString(),
+            'due_date' => $due->toDateString(),
+            'date_returned' => $dateReturned ? Carbon::instance($dateReturned)->toDateString() : null,
             'late_fee' => $lateFee,
         ];
     }

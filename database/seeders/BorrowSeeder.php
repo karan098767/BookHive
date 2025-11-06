@@ -6,30 +6,37 @@ use Illuminate\Database\Seeder;
 use App\Models\Borrow;
 use App\Models\Book;
 use App\Models\Member;
+use Carbon\Carbon;
 
 class BorrowSeeder extends Seeder
 {
     public function run(): void
     {
-        if (Book::count() === 0) {
-            Book::factory()->count(10)->create();
+        $members = Member::all();
+        $books = Book::all();
+
+        if ($members->isEmpty() || $books->isEmpty()) {
+            $this->command->warn('No members or books available, skipping BorrowSeeder.');
+            return;
         }
 
-        if (Member::count() === 0) {
-            Member::factory()->count(10)->create();
-        }
+        foreach (range(1, 30) as $i) {
+            $issueDate = Carbon::now()->subDays(rand(0, 30));
+            $dueDate = (clone $issueDate)->addDays(14);
+            $dateReturned = rand(0, 1) ? (clone $dueDate)->addDays(rand(0, 5)) : null;
 
-        Borrow::factory()->count(80)->create();
+            $lateFee = 0;
+            if ($dateReturned && $dateReturned->gt($dueDate)) {
+                $lateFee = $dateReturned->diffInDays($dueDate) * 100;
+            }
 
-        foreach (Member::all() as $member) {
-            $member->update([
-                'total_books_borrowed' => $member->borrows()->count(),
-            ]);
-        }
-
-        foreach (Book::all() as $book) {
-            $book->update([
-                'total_borrow_count' => $book->borrows()->count(),
+            Borrow::create([
+                'book_id' => $books->random()->id,
+                'member_id' => $members->random()->id,
+                'issue_date' => $issueDate,
+                'due_date' => $dueDate,
+                'date_returned' => $dateReturned,
+                'late_fee' => $lateFee,
             ]);
         }
     }
