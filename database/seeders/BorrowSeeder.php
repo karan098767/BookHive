@@ -27,7 +27,7 @@ class BorrowSeeder extends Seeder
 
             $lateFee = 0;
             if ($dateReturned && $dateReturned->gt($dueDate)) {
-                $lateFee = $dateReturned->diffInDays($dueDate) * 100;
+                $lateFee = abs($dateReturned->diffInDays($dueDate)) * 100;
             }
 
             Borrow::create([
