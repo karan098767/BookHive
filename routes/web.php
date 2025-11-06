@@ -8,11 +8,7 @@ use App\Http\Controllers\BorrowController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
+/* Web Routes */
 
 // Public: simple home that navigates to books
 Route::get('/', function () {
@@ -28,8 +24,8 @@ Route::resource('authors', AuthorController::class);
 // Members (admin-managed)
 Route::resource('members', MemberController::class);
 
-// Borrow tracker
-Route::resource('borrow', BorrowController::class)->parameters(['borrow' => 'borrowTracker']);
+// Borrow
+Route::resource('borrow', BorrowController::class)->parameters(['borrow' => 'borrow']);
 
 // Admin simple auth
 Route::get('admin/login', [AuthController::class,'showLogin'])->name('admin.login');
