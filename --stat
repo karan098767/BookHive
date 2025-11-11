@@ -1,0 +1,65 @@
+*   [33m6f50d20[m[33m ([m[1;32mmain[m[33m)[m Merge branch 'main' of https://github.com/karan098767/BookHive
+[31m|[m[32m\[m  
+[31m|[m *   [33m3477183[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Merge pull request #13 from karan098767/borrow-seeder
+[31m|[m [33m|[m[34m\[m  
+[31m|[m [33m|[m * [33m97550d5[m updated the borrow seeder
+[31m|[m [33m|[m[33m/[m  
+[31m|[m *   [33m62ce428[m Merge pull request #12 from karan098767/borrow-controller
+[31m|[m [35m|[m[36m\[m  
+[31m|[m [35m|[m *   [33m5b4f618[m Merge branch 'main' into borrow-controller
+[31m|[m [35m|[m [1;31m|[m[35m\[m  
+[31m|[m [35m|[m [1;31m|[m[35m/[m  
+[31m|[m [35m|[m[35m/[m[1;31m|[m   
+[31m|[m * [1;31m|[m   [33m3eabcc5[m Merge pull request #11 from karan098767/controller_logic
+[31m|[m [1;33m|[m[1;34m\[m [1;31m\[m  
+[31m|[m [1;33m|[m * [1;31m|[m [33maba68f4[m Fixed late fee logic errors on borrow controller and factories
+[31m|[m [1;33m|[m [1;34m|[m * [33m98a2d3c[m updated borrow contoller
+* [1;33m|[m [1;34m|[m [1;34m|[m [33mec38621[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmembers[m[33m, [m[1;31morigin/members[m[33m)[m created members controller and modules
+[1;33m|[m[1;33m/[m [1;34m/[m [1;34m/[m  
+* [1;34m|[m [1;34m|[m [33m20eac19[m Merge pull request #10 from karan098767/controller_logic
+[1;35m|[m[1;34m\[m[1;34m|[m [1;34m|[m 
+[1;35m|[m * [1;34m|[m [33mfd94899[m[33m ([m[1;31morigin/controller_logic[m[33m)[m Fixed tables on borrow index view
+[1;35m|[m[1;35m/[m [1;34m/[m  
+* [1;34m|[m [33m9b946b7[m Merge pull request #9 from karan098767/borrow-update
+[31m|[m[1;34m\[m[1;34m|[m 
+[31m|[m * [33m1ade907[m[33m ([m[1;31morigin/borrow-update[m[33m)[m updated the borrow controller and the modules
+* [32m|[m [33m22f85c1[m Merge pull request #8 from karan098767/borrow
+[33m|[m[32m\[m[32m|[m 
+[33m|[m * [33m4ba9f91[m[33m ([m[1;31morigin/borrow[m[33m)[m created the borrow module
+[33m|[m[33m/[m  
+*   [33m2666266[m Merge pull request #7 from karan098767/book-model
+[35m|[m[36m\[m  
+[35m|[m * [33m53ecd87[m[33m ([m[1;31morigin/book-model[m[33m)[m updated the book model
+[35m|[m[35m/[m  
+*   [33m9252962[m Merge pull request #6 from karan098767/ba_views
+[1;31m|[m[1;32m\[m  
+[1;31m|[m * [33me4dafce[m[33m ([m[1;31morigin/ba_views[m[33m)[m Configured book and author views and controllers
+* [1;32m|[m   [33m68e3c0e[m Merge pull request #5 from karan098767/models
+[1;32m|[m[1;34m\[m [1;32m\[m  
+[1;32m|[m [1;34m|[m[1;32m/[m  
+[1;32m|[m[1;32m/[m[1;34m|[m   
+[1;32m|[m * [33m8da796b[m[33m ([m[1;31morigin/models[m[33m)[m updated the models
+[1;32m|[m[1;32m/[m  
+*   [33mdbb9bc9[m Merge pull request #4 from karan098767/updates
+[1;35m|[m[1;36m\[m  
+[1;35m|[m *   [33mfbab035[m[33m ([m[1;31morigin/updates[m[33m)[m Merge branch 'main' into updates
+[1;35m|[m [31m|[m[1;35m\[m  
+[1;35m|[m [31m|[m[1;35m/[m  
+[1;35m|[m[1;35m/[m[31m|[m   
+* [31m|[m   [33ma770283[m Merge pull request #3 from karan098767/add-chapter-1
+[33m|[m[34m\[m [31m\[m  
+[33m|[m * [31m|[m [33ma0e9b08[m[33m ([m[1;31morigin/add-chapter-1[m[33m)[m Added chapter 1
+[33m|[m[33m/[m [31m/[m  
+[33m|[m * [33m8bcd7ea[m created admin's and books module
+[33m|[m * [33m22f25c4[m Updated seeders
+[33m|[m[33m/[m  
+* [33mf58aa1c[m updated the project's readme
+* [33m8df8ef2[m created Routes and simple middleware for admin
+* [33mfc0f249[m Created the databases seeder
+* [33mabb5fba[m created factories
+*   [33m661f524[m Merge pull request #2 from karan098767/Migrations_2
+[35m|[m[36m\[m  
+[35m|[m * [33md4a3b9a[m[33m ([m[1;31morigin/Migrations_2[m[33m)[m Added migrations and created/connected to db
+[35m|[m[35m/[m  
+* [33m49d0376[m created models
+* [33mff76c1e[m initial commit
