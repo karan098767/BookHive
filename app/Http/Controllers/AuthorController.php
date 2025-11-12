@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Author;
+use App\Models\Book;
+use Illuminate\Support\Facades\DB;
 
 class AuthorController extends Controller
 {
@@ -23,7 +25,17 @@ class AuthorController extends Controller
 
         $authors=$query->paginate(15);
 
-        return view('authors.index', compact('authors'));
+        // Total book count
+
+        // $bookCount = Author::select('authors.id')
+        //                     ->addSelect(DB::raw('COUNT(books.id) AS book_count'))
+        //                     ->leftJoin('books', 'authors.id', '=', 'books.author_id')
+        //                     ->groupBy('authors.id')
+        //                     ->pluck('book_count', 'id');
+
+        $bookCount = Author::withCount('books')->pluck('books_count', 'id');
+
+        return view('authors.index', compact('authors', 'bookCount'));
     }
 
     /**
@@ -54,7 +66,15 @@ class AuthorController extends Controller
     {
         $authors = Author::findOrFail($id);
         // show authors with specifc id
-        return view('authors.show', compact('authors'));
+
+        // display all of their books
+        $book = Book::select('title', 'genre', 'id')
+                ->where('author_id', $id)
+                ->get();
+
+        //
+        $bookCount = Author::withCount('books')->pluck('books_count', 'id');
+        return view('authors.show', compact('authors', 'book', 'bookCount'));
     }
 
     /**

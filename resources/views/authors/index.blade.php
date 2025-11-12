@@ -21,7 +21,7 @@
         <h2 class="font-semibold">{{ $at->first_name }} {{ $at->last_name }}</h2>
         <span class="text-xs px-2 py-1 bg-gray-100 rounded">{{ $at->id }}</span>
       </div>
-      {{-- <p class="text-sm text-gray-600 mt-1">By: {{ $at->first_name }} {{ $at->last_name }}</p> --}}
+      <p class="text-sm text-gray-600 mt-1">Total Books: {{ $bookCount[$at->id] ?? 0 }}</p>
       <div class="mt-3 flex items-center justify-between">
         <a href="{{ route('authors.show', $at) }}" class="text-indigo-600 text-sm">View</a>
         <div class="space-x-2">
