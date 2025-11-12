@@ -1,54 +1,44 @@
 @extends('layouts.app')
 
+@section('title','Members')
+
 @section('content')
-<div class="container mt-4">
-    <h2 class="mb-4">Library Members</h2>
+<div class="flex justify-between items-center mb-4">
+  <h1 class="text-2xl font-bold">Members</h1>
+  <a href="{{ route('members.create') }}" class="px-3 py-2 bg-green-600 text-white rounded">Add Member</a>
+</div>
 
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
+<table class="min-w-full bg-white border rounded shadow">
+  <thead>
+    <tr class="bg-gray-100 text-left">
+      <th class="p-2">#</th>
+      <th class="p-2">Name</th>
+      <th class="p-2">Email</th>
+      <th class="p-2">Books Borrowed</th>
+      <th class="p-2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach($members as $m)
+    <tr class="border-t">
+      <td class="p-2">{{ $m->id }}</td>
+      <td class="p-2">{{ $m->first_name }} {{ $m->last_name }}</td>
+      <td class="p-2">{{ $m->email }}</td>
+      <td class="p-2">{{ $m->borrowings()->count() }}</td>
+      <td class="p-2 flex space-x-2">
+        <a href="{{ route('members.show',$m) }}" class="text-indigo-600 text-sm">View</a>
+        <a href="{{ route('members.edit',$m) }}" class="text-yellow-600 text-sm">Edit</a>
+        <form action="{{ route('members.destroy',$m) }}" method="POST" onsubmit="return confirm('Delete member?')">
+          @csrf @method('DELETE')
+          <button class="text-red-600 text-sm">Delete</button>
+        </form>
+      </td>
+    </tr>
+    @endforeach
+  </tbody>
+</table>
 
-    <a href="{{ route('members.create') }}" class="btn btn-primary mb-3">Add New Member</a>
-
-    <table class="table table-striped">
-        <thead class="table-dark">
-            <tr>
-                <th>#</th>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Date of Birth</th>
-                <th>Books Borrowed</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($members as $member)
-            <tr>
-                <td>{{ $member->id }}</td>
-                <td>{{ $member->first_name }} {{ $member->last_name }}</td>
-                <td>{{ $member->email }}</td>
-                <td>{{ $member->phone_number ?? 'N/A' }}</td>
-                <td>{{ $member->dob ?? 'N/A' }}</td>
-                <td>{{ $member->total_books_borrowed }}</td>
-                <td>
-                    @if($member->is_active)
-                        <span class="badge bg-success">Active</span>
-                    @else
-                        <span class="badge bg-secondary">Inactive</span>
-                    @endif
-                </td>
-                <td>
-                    <a href="{{ route('members.edit', $member->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                    <form action="{{ route('members.destroy', $member->id) }}" method="POST" class="d-inline">
-                        @csrf @method('DELETE')
-                        <button class="btn btn-sm btn-danger" onclick="return confirm('Delete this member?')">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+<div class="mt-4">
+  {{ $members->links() }}
 </div>
 @endsection
