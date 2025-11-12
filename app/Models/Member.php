@@ -19,4 +19,10 @@ class Member extends Authenticatable
     {
         return $this->hasMany(Borrow::class);
     }
+
+    public function borrowings()
+{
+    return $this->hasMany(\App\Models\Borrow::class, 'member_id');
+}
+
 }
